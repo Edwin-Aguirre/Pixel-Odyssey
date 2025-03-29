@@ -12,14 +12,14 @@ config_version=5
 
 config/name="Pixel Odyssey"
 config/tags=PackedStringArray("udemy")
+run/main_scene="uid://dl1sv0o5qqmms"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1024
-window/size/viewport_height=768
 window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [input]
 
@@ -57,6 +57,11 @@ reload={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="platforms"
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
