@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://xkjjffeep5e4"]
+
+[ext_resource type="PackedScene" uid="uid://bsqon6bpj6p3n" path="res://scenes/enemies/enemy_base.tscn" id="1_srf5o"]
+[ext_resource type="Texture2D" uid="uid://bg2vywokltn6e" path="res://assets/enemies/tilemap-characters.png" id="2_1isa0"]
+[ext_resource type="Script" uid="uid://c50no885bdhqc" path="res://scenes/enemies/spiky_robot/spiky_robot.gd" id="2_65vrp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1isa0"]
+size = Vector2(15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65vrp"]
+atlas = ExtResource("2_1isa0")
+region = Rect2(150, 25, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ft4g"]
+atlas = ExtResource("2_1isa0")
+region = Rect2(175, 25, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86y02"]
+atlas = ExtResource("2_1isa0")
+region = Rect2(200, 25, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86y02"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65vrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ft4g")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86y02")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxxc3"]
+size = Vector2(15, 16)
+
+[node name="SpikyRobot" instance=ExtResource("1_srf5o")]
+script = ExtResource("2_65vrp")
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_1isa0")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_86y02")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(-0.5, 2)
+shape = SubResource("RectangleShape2D_uxxc3")
+
+[node name="JumpTimer" type="Timer" parent="." index="4"]
+one_shot = true
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

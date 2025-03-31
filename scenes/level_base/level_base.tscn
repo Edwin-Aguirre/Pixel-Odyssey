@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://dl1sv0o5qqmms"]
+[gd_scene load_steps=10 format=4 uid="uid://dl1sv0o5qqmms"]
 
 [ext_resource type="Texture2D" uid="uid://cxc4e5iqwshgs" path="res://assets/backgrounds/backgrounds_tilemap_packed.png" id="1_3tlib"]
 [ext_resource type="Texture2D" uid="uid://d066k1sn2faej" path="res://assets/tiles/level_tilemap_packed.png" id="1_myc1q"]
 [ext_resource type="PackedScene" uid="uid://k6wyhvoyjjup" path="res://scenes/player/player.tscn" id="2_u6jkd"]
-[ext_resource type="PackedScene" uid="uid://b3wiif76420vp" path="res://scenes/enemies/Robot/robot.tscn" id="4_ncu3c"]
+[ext_resource type="PackedScene" uid="uid://b3wiif76420vp" path="res://scenes/enemies/robot/robot.tscn" id="4_ncu3c"]
+[ext_resource type="PackedScene" uid="uid://xkjjffeep5e4" path="res://scenes/enemies/spiky_robot/spiky_robot.tscn" id="5_kr674"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ncu3c"]
 texture = ExtResource("1_3tlib")
@@ -45,8 +46,11 @@ texture_region_size = Vector2i(18, 18)
 0:2/0 = 0
 0:3/0 = 0
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
 3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
 4:0/0 = 0
 4:0/0/terrain_set = 0
 4:0/0/terrain = 0
@@ -318,3 +322,6 @@ position = Vector2(485, 528)
 
 [node name="Robot2" parent="." instance=ExtResource("4_ncu3c")]
 position = Vector2(105, 564)
+
+[node name="SpikyRobot" parent="." instance=ExtResource("5_kr674")]
+position = Vector2(330, 488)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b3wiif76420vp"]
 
 [ext_resource type="PackedScene" uid="uid://bsqon6bpj6p3n" path="res://scenes/enemies/enemy_base.tscn" id="1_svwlr"]
-[ext_resource type="Script" uid="uid://b26di5477i8k5" path="res://scenes/enemies/Robot/robot.gd" id="2_ov2gk"]
+[ext_resource type="Script" uid="uid://b26di5477i8k5" path="res://scenes/enemies/robot/robot.gd" id="2_ov2gk"]
 [ext_resource type="Texture2D" uid="uid://bg2vywokltn6e" path="res://assets/enemies/tilemap-characters.png" id="3_ov2gk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ulmn8"]
@@ -42,7 +42,7 @@ shape = SubResource("RectangleShape2D_ulmn8")
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_7w0xo")
 autoplay = "default"
-frame_progress = 0.0236797
+frame_progress = 0.330813
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2(0.5, 4.5)

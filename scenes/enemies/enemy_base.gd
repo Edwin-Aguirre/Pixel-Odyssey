@@ -14,6 +14,7 @@ const FALL_OFF_Y: int = 750
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
+@warning_ignore("unused_private_class_variable")
 var _gravity: float = 800.0
 var _player_ref: Player
 
