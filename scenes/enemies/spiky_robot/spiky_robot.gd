@@ -31,10 +31,6 @@ func _physics_process(delta: float) -> void:
 	flip_me()
 
 
-func flip_me() -> void:
-	animated_sprite_2d.flip_h = _player_ref.global_position.x > global_position.x
-
-
 func apply_jump() -> void:
 	if is_on_floor() == false or _can_jump == false:
 		return

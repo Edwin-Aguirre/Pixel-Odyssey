@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://byi8rdxhsym7i"]
+
+[ext_resource type="PackedScene" uid="uid://bsqon6bpj6p3n" path="res://scenes/enemies/enemy_base.tscn" id="1_2l6an"]
+[ext_resource type="Texture2D" uid="uid://bg2vywokltn6e" path="res://assets/enemies/tilemap-characters.png" id="2_bftnw"]
+[ext_resource type="Script" uid="uid://8g6s4odvimx8" path="res://scenes/enemies/flying_robot/flying_robot.gd" id="2_t312h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t312h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6g2up"]
+atlas = ExtResource("2_bftnw")
+region = Rect2(150, 50, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijjoh"]
+atlas = ExtResource("2_bftnw")
+region = Rect2(175, 50, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxfn5"]
+atlas = ExtResource("2_bftnw")
+region = Rect2(200, 50, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnjen"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6g2up")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijjoh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxfn5")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bftnw"]
+
+[node name="FlyingRobot" instance=ExtResource("1_2l6an")]
+collision_mask = 0
+script = ExtResource("2_t312h")
+fly_speed = Vector2(34, 15)
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_t312h")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_qnjen")
+animation = &"fly"
+frame_progress = 0.0558387
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_bftnw")
+
+[node name="PlayerDetector" type="RayCast2D" parent="." index="4"]
+target_position = Vector2(0, 300)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="DirectionTimer" type="Timer" parent="." index="5"]
+wait_time = 3.0
+
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]

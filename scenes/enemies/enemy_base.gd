@@ -32,6 +32,10 @@ func _physics_process(_delta: float) -> void:
 		queue_free()
 
 
+func flip_me() -> void:
+	animated_sprite_2d.flip_h = _player_ref.global_position.x > global_position.x
+
+
 func die() -> void:
 	set_physics_process(false)
 	queue_free()

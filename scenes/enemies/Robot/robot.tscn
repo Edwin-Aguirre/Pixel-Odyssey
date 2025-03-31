@@ -25,7 +25,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_7w0xo")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -41,8 +41,9 @@ shape = SubResource("RectangleShape2D_ulmn8")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_7w0xo")
-autoplay = "default"
-frame_progress = 0.330813
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.498698
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2(0.5, 4.5)
