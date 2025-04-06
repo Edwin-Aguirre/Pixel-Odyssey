@@ -15,6 +15,7 @@ const MAX_FALL = 350.0
 
 @onready var alien_sprite_2d: Sprite2D = $AlienSprite2D
 @onready var debug_label: Label = $DebugLabel
+@onready var shooter: Shooter = $Shooter
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,6 +25,12 @@ func _ready() -> void:
 
 func _enter_tree() -> void:
 	add_to_group(Constants.PLAYER_GROUP)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("shoot"):
+		var dir: Vector2 = Vector2.RIGHT if alien_sprite_2d.flip_h else Vector2.LEFT
+		shooter.shoot(dir)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
