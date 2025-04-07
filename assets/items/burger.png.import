@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv6llkys0nn6x"
-path="res://.godot/imported/items_tilemap_packed.png-b7bfa35749df5eb9ed1e0aca211e32f5.ctex"
+uid="uid://huwkjx8rtmbr"
+path="res://.godot/imported/burger.png-df633c38358feaf75953b596a7fe0907.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/items_tilemap_packed.png"
-dest_files=["res://.godot/imported/items_tilemap_packed.png-b7bfa35749df5eb9ed1e0aca211e32f5.ctex"]
+source_file="res://assets/items/burger.png"
+dest_files=["res://.godot/imported/burger.png-df633c38358feaf75953b596a7fe0907.ctex"]
 
 [params]
 

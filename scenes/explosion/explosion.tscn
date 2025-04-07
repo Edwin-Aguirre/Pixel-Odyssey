@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://0e01miy3d42m"]
+
+[ext_resource type="Texture2D" uid="uid://cohbcamdqoij3" path="res://assets/explosion/explosion.png" id="1_plwnx"]
+[ext_resource type="Script" uid="uid://taimfh0a26hn" path="res://scenes/explosion/explosion.gd" id="2_12s4q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plwnx"]
+atlas = ExtResource("1_plwnx")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12s4q"]
+atlas = ExtResource("1_plwnx")
+region = Rect2(18, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wikc1"]
+atlas = ExtResource("1_plwnx")
+region = Rect2(36, 0, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_piueb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plwnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12s4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wikc1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Explosion" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_piueb")
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
+script = ExtResource("2_12s4q")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
