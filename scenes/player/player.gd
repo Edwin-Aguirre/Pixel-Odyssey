@@ -16,6 +16,7 @@ const MAX_FALL = 350.0
 @onready var alien_sprite_2d: Sprite2D = $AlienSprite2D
 @onready var debug_label: Label = $DebugLabel
 @onready var shooter: Shooter = $Shooter
+@onready var sound: AudioStreamPlayer2D = $Sound
 
 
 # Called when the node enters the scene tree for the first time.
@@ -41,6 +42,7 @@ func _physics_process(delta: float) -> void:
 	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y += JUMP_VELOCITY
+		sound.play()
 	
 	# Get the input direction and handle the movement.
 	var direction := Input.get_axis("left", "right")

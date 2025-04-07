@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cj68xi80j884x"]
+[gd_scene load_steps=26 format=3 uid="uid://cj68xi80j884x"]
 
 [ext_resource type="Script" uid="uid://ctnreleadl85w" path="res://scenes/food_pickup/food_pickup.gd" id="1_6s6qe"]
 [ext_resource type="Texture2D" uid="uid://huwkjx8rtmbr" path="res://assets/items/burger.png" id="1_rkqob"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b57bmuu5bober" path="res://assets/items/donut.png" id="4_6s6qe"]
 [ext_resource type="Texture2D" uid="uid://buwdh1vd75gi3" path="res://assets/items/pizza.png" id="5_46div"]
 [ext_resource type="PackedScene" uid="uid://dmxx7du0bju6a" path="res://scenes/life_timer/life_timer.tscn" id="6_2db4v"]
+[ext_resource type="AudioStream" uid="uid://b1brtsspvakr0" path="res://assets/sound/pickup.wav" id="8_46div"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2xl5m"]
 atlas = ExtResource("1_rkqob")
@@ -158,4 +159,9 @@ shape = SubResource("RectangleShape2D_i885x")
 [node name="LifeTimer" parent="." instance=ExtResource("6_2db4v")]
 life_time = 5.0
 
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_46div")
+volume_db = -5.0
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="finished" from="Sound" to="." method="_on_sound_finished"]

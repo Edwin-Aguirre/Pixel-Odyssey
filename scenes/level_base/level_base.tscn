@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dl1sv0o5qqmms"]
+[gd_scene load_steps=14 format=4 uid="uid://dl1sv0o5qqmms"]
 
 [ext_resource type="Texture2D" uid="uid://cxc4e5iqwshgs" path="res://assets/backgrounds/backgrounds_tilemap_packed.png" id="1_3tlib"]
 [ext_resource type="Texture2D" uid="uid://d066k1sn2faej" path="res://assets/tiles/level_tilemap_packed.png" id="1_myc1q"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://xkjjffeep5e4" path="res://scenes/enemies/spiky_robot/spiky_robot.tscn" id="5_kr674"]
 [ext_resource type="PackedScene" uid="uid://byi8rdxhsym7i" path="res://scenes/enemies/flying_robot/flying_robot.tscn" id="6_tn631"]
 [ext_resource type="PackedScene" uid="uid://beewmetniprq3" path="res://scenes/object_maker/object_maker.tscn" id="8_48c0a"]
+[ext_resource type="AudioStream" uid="uid://usolntp53odk" path="res://assets/sound/Flowing Rocks.ogg" id="9_cr6la"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ncu3c"]
 texture = ExtResource("1_3tlib")
@@ -343,3 +344,9 @@ position = Vector2(729, 488)
 position = Vector2(365, 419)
 
 [node name="ObjectMaker" parent="." instance=ExtResource("8_48c0a")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_cr6la")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true
