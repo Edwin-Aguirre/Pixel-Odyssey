@@ -1,0 +1,12 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cf52c1a6an7k0"]
+
+[ext_resource type="FontFile" uid="uid://c6urmcbwtdh80" path="res://assets/fonts/Kenney Mini.ttf" id="1_jxikl"]
+
+[resource]
+font = ExtResource("1_jxikl")
+font_size = 48
+outline_size = 12
+outline_color = Color(0.796078, 0.505882, 0.368627, 1)
+shadow_size = 12
+shadow_color = Color(0.796078, 0.505882, 0.368627, 1)
+shadow_offset = Vector2(3, 3)
