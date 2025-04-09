@@ -8,6 +8,13 @@ const GRAVITY: float = 690.0
 const JUMP_VELOCITY = -300.0
 const RUN_SPEED = 130.0
 const MAX_FALL = 350.0
+const HURT_CONSTANT_VELOCITY: Vector2 = Vector2(0, -130)
+const JUMP = preload("res://assets/sound/jump.wav")
+const DAMAGE = preload("res://assets/sound/damage.wav")
+
+
+var _is_hurt: bool = false
+var _invincible: bool = false
 
 
 @export var fell_off_y: float = 750.0
@@ -17,6 +24,7 @@ const MAX_FALL = 350.0
 @onready var debug_label: Label = $DebugLabel
 @onready var shooter: Shooter = $Shooter
 @onready var sound: AudioStreamPlayer2D = $Sound
+@onready var hurt_timer: Timer = $HurtTimer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -39,10 +47,29 @@ func _physics_process(delta: float) -> void:
 	# Gravity
 	velocity.y += GRAVITY * delta
 	
+	get_input()
+	
+	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL)
+	
+	move_and_slide()
+	update_debug_label()
+	fallen_off()
+
+
+func play_effect(effect: AudioStream) -> void:
+	sound.stop()
+	sound.stream = effect
+	sound.play()
+
+
+func get_input() -> void:
+	if _is_hurt:
+		return
+	
 	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y += JUMP_VELOCITY
-		sound.play()
+		play_effect(JUMP)
 	
 	# Get the input direction and handle the movement.
 	var direction := Input.get_axis("left", "right")
@@ -58,14 +85,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * RUN_SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, RUN_SPEED)
-	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL)
-	move_and_slide()
-	
-	# Update debug label
-	update_debug_label()
-	
-	# Player dies from falling off level
-	fallen_off()
 
 
 func update_debug_label() ->void:
@@ -79,3 +98,36 @@ func update_debug_label() ->void:
 func fallen_off() -> void:
 	if global_position.y > fell_off_y:
 		queue_free()
+
+
+func go_invincible() -> void:
+	if _invincible:
+		return
+	_invincible = true
+	var tween: Tween = create_tween()
+	for i in range(3):
+		tween.tween_property(alien_sprite_2d, "modulate", Color("#ffffff", 0.0), 0.5)
+		tween.tween_property(alien_sprite_2d, "modulate", Color("#ffffff", 1.0), 0.5)
+	tween.tween_property(self, "_invincible", false, 0)
+
+
+func apply_hurt_jump() -> void:
+	_is_hurt = true
+	velocity = HURT_CONSTANT_VELOCITY
+	hurt_timer.start()
+	play_effect(DAMAGE)
+
+
+func apply_hit() -> void:
+	if _invincible:
+		return
+	go_invincible()
+	apply_hurt_jump()
+
+
+func _on_hit_box_area_entered(_area: Area2D) -> void:
+	call_deferred("apply_hit")
+
+
+func _on_hurt_timer_timeout() -> void:
+	_is_hurt = false
