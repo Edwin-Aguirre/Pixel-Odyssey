@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Pixel Odyssey"
 config/tags=PackedStringArray("udemy")
-run/main_scene="uid://dl1sv0o5qqmms"
+run/main_scene="uid://c68pa1idtqy3m"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -25,6 +25,7 @@ GameManager="*res://globals/game_manager.gd"
 
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+mouse_cursor/custom_image="uid://badn45etjey1i"
 
 [input]
 

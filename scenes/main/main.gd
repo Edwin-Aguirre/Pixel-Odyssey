@@ -1,11 +1,24 @@
 extends Control
 
 
+const HIGHSCORE_DISPLAY = preload("res://scenes/highscore_display/highscore_display.tscn")
+
+
+@onready var grid_container: GridContainer = $MarginContainer/GridContainer
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		GameManager.load_next_level()
 
 
+func set_scores() -> void:
+	for score: HighScore in GameManager.high_scores.get_scores_list():
+		var hsd: HighScoreDisplayItem = HIGHSCORE_DISPLAY.instantiate()
+		hsd.setup(score)
+		grid_container.add_child(hsd)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	set_scores()
