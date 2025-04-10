@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://brrkejkovmep4"]
+
+[ext_resource type="Texture2D" uid="uid://rg71tosw3hgk" path="res://assets/enemies/ball_spike.png" id="1_cg6m4"]
+[ext_resource type="Script" uid="uid://bymwso63j3w4o" path="res://scenes/ball_spike/ball_spike.gd" id="1_gac0n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gac0n"]
+
+[node name="BallSpike" type="PathFollow2D"]
+rotates = false
+script = ExtResource("1_gac0n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cg6m4")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_gac0n")
