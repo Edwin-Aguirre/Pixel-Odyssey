@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://tg5c04ba47rk"]
+
+[ext_resource type="Texture2D" uid="uid://d066k1sn2faej" path="res://assets/tiles/level_tilemap_packed.png" id="1_yxuw2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2h361"]
+size = Vector2(18, 10)
+
+[node name="FloorSpikes" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yxuw2")
+region_enabled = true
+region_rect = Rect2(144, 63, 18, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2h361")

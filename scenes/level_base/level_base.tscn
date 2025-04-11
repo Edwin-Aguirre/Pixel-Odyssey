@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dl1sv0o5qqmms"]
+[gd_scene load_steps=21 format=4 uid="uid://dl1sv0o5qqmms"]
 
 [ext_resource type="Texture2D" uid="uid://cxc4e5iqwshgs" path="res://assets/backgrounds/backgrounds_tilemap_packed.png" id="1_3tlib"]
 [ext_resource type="Texture2D" uid="uid://d066k1sn2faej" path="res://assets/tiles/level_tilemap_packed.png" id="1_myc1q"]
@@ -11,6 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://usolntp53odk" path="res://assets/sound/Flowing Rocks.ogg" id="9_cr6la"]
 [ext_resource type="PackedScene" uid="uid://ceoak2lcescaa" path="res://scenes/hud/hud.tscn" id="10_v0a34"]
 [ext_resource type="PackedScene" uid="uid://brrkejkovmep4" path="res://scenes/ball_spike/ball_spike.tscn" id="11_uakon"]
+[ext_resource type="PackedScene" uid="uid://dydfrk85msv23" path="res://scenes/moving_platform/moving_platform.tscn" id="12_0oed1"]
+[ext_resource type="PackedScene" uid="uid://tg5c04ba47rk" path="res://scenes/floor_spikes/floor_spikes.tscn" id="13_od1d2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ncu3c"]
 texture = ExtResource("1_3tlib")
@@ -322,6 +324,18 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="Curve2D" id="Curve2D_od1d2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 376, 463, 0, 0, 0, 0, 473, 423, 0, 0, 0, 0, 376, 463)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_76fv4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 699, 492, 0, 0, 0, 0, 806, 560, 0, 0, 0, 0, 806, 560, 0, 0, 0, 0, 699, 492)
+}
+point_count = 4
+
 [node name="LevelBase" type="Node2D"]
 script = ExtResource("1_p2h7h")
 
@@ -363,10 +377,34 @@ parameters/looping = true
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("10_v0a34")]
 
-[node name="BallSpikesHolder" type="Node" parent="."]
+[node name="BallSpikes" type="Node" parent="."]
 
-[node name="Path2D" type="Path2D" parent="BallSpikesHolder"]
+[node name="Path2D" type="Path2D" parent="BallSpikes"]
 curve = SubResource("Curve2D_v0a34")
 
-[node name="BallSpike" parent="BallSpikesHolder/Path2D" instance=ExtResource("11_uakon")]
+[node name="BallSpike" parent="BallSpikes/Path2D" instance=ExtResource("11_uakon")]
 position = Vector2(639, 584)
+
+[node name="MovingPlatforms" type="Node" parent="."]
+
+[node name="Path2D" type="Path2D" parent="MovingPlatforms"]
+curve = SubResource("Curve2D_od1d2")
+
+[node name="MovingPlatform" parent="MovingPlatforms/Path2D" instance=ExtResource("12_0oed1")]
+position = Vector2(376, 463)
+speed = 50.0
+
+[node name="Path2D2" type="Path2D" parent="MovingPlatforms"]
+curve = SubResource("Curve2D_76fv4")
+
+[node name="MovingPlatform" parent="MovingPlatforms/Path2D2" instance=ExtResource("12_0oed1")]
+position = Vector2(699, 492)
+speed = 50.0
+
+[node name="FloorSpikes" type="Node" parent="."]
+
+[node name="FloorSpikes" parent="FloorSpikes" instance=ExtResource("13_od1d2")]
+position = Vector2(305, 573)
+
+[node name="FloorSpikes2" parent="FloorSpikes" instance=ExtResource("13_od1d2")]
+position = Vector2(830, 573)

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dydfrk85msv23"]
+
+[ext_resource type="Texture2D" uid="uid://d066k1sn2faej" path="res://assets/tiles/level_tilemap_packed.png" id="1_1f4s0"]
+[ext_resource type="Script" uid="uid://03tnmh61k37d" path="res://scenes/moving_platform/moving_platform.gd" id="1_pna2f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pna2f"]
+size = Vector2(54, 10)
+
+[node name="MovingPlatform" type="PathFollow2D"]
+rotates = false
+script = ExtResource("1_pna2f")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+collision_mask = 0
+sync_to_physics = false
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+texture = ExtResource("1_1f4s0")
+region_enabled = true
+region_rect = Rect2(108, 126, 18, 10)
+
+[node name="Sprite2D2" type="Sprite2D" parent="AnimatableBody2D"]
+position = Vector2(-18, 0)
+texture = ExtResource("1_1f4s0")
+region_enabled = true
+region_rect = Rect2(108, 126, 18, 10)
+
+[node name="Sprite2D3" type="Sprite2D" parent="AnimatableBody2D"]
+position = Vector2(18, 0)
+texture = ExtResource("1_1f4s0")
+region_enabled = true
+region_rect = Rect2(108, 126, 18, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_pna2f")
