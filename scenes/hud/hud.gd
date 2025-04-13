@@ -24,7 +24,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		GameManager.load_main()
 	
 	if _can_continue and event.is_action_pressed("jump"):
-		GameManager.load_main()
+		if vb_game_over.visible:
+			GameManager.load_main()
+		else:
+			GameManager.load_next_level()
 
 
 # Called when the node enters the scene tree for the first time.

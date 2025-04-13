@@ -7,10 +7,11 @@ const LEVEL_BASE = preload("res://scenes/level_base/level_base.tscn")
 
 
 const Levels: Array[PackedScene] = [
-	#preload("res://Scenes/LevelBase/Level1.tscn"),
-	#preload("res://Scenes/LevelBase/Level2.tscn"),
-	preload("res://scenes/level_base/level_base.tscn")
+	preload("res://scenes/levels/level_1.tscn"),
+	preload("res://scenes/levels/level_2.tscn"),
+	preload("res://scenes/levels/level_3.tscn")
 ]
+
 
 const SCORES_PATH = "user://high_scores.tres"
 
