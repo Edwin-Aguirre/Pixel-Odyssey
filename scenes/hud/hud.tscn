@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dkt6d0jfwe1xa" path="res://assets/items/heart.png" id="2_cgeww"]
 
 [node name="HUD" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,36 +34,36 @@ label_settings = ExtResource("1_cgeww")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBHearts" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 
-[node name="H1" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="H1" type="TextureRect" parent="MarginContainer/HBHearts"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_cgeww")
 
-[node name="H2" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="H2" type="TextureRect" parent="MarginContainer/HBHearts"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_cgeww")
 
-[node name="H3" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="H3" type="TextureRect" parent="MarginContainer/HBHearts"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_cgeww")
 
-[node name="H4" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="H4" type="TextureRect" parent="MarginContainer/HBHearts"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_cgeww")
 
-[node name="H5" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="H5" type="TextureRect" parent="MarginContainer/HBHearts"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

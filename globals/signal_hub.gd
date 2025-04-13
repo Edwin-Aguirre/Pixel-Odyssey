@@ -4,6 +4,8 @@ extends Node
 signal on_create_bullet(pos: Vector2, dir: Vector2, speed: float, obj_type: Constants.ObjectType)
 signal on_create_object(pos: Vector2, obj_type: Constants.ObjectType)
 signal on_scored(points: int)
+signal on_boss_killed
+signal on_player_hit(lives: int, shake: bool)
 
 
 func emit_on_create_bullet(pos: Vector2, dir: Vector2, speed: float, obj_type: Constants.ObjectType) -> void:
@@ -16,3 +18,11 @@ func emit_on_create_object(pos: Vector2, obj_type: Constants.ObjectType) -> void
 
 func emit_on_scored(points: int) -> void:
 	on_scored.emit(points)
+
+
+func emit_on_boss_killed() -> void:
+	on_boss_killed.emit()
+
+
+func emit_on_player_hit(lives: int, shake: bool) -> void:
+	on_player_hit.emit(lives, shake)

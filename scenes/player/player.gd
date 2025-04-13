@@ -18,6 +18,7 @@ var _invincible: bool = false
 
 
 @export var fell_off_y: float = 750.0
+@export var lives: int = 3
 
 
 @onready var alien_sprite_2d: Sprite2D = $AlienSprite2D
@@ -29,7 +30,11 @@ var _invincible: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	call_deferred("late_init")
+
+
+func late_init() -> void:
+	SignalHub.emit_on_player_hit(lives, false)
 
 
 func _enter_tree() -> void:
@@ -96,8 +101,9 @@ func update_debug_label() ->void:
 
 
 func fallen_off() -> void:
-	if global_position.y > fell_off_y:
-		queue_free()
+	if global_position.y < fell_off_y:
+		return
+	reduce_lives(lives)
 
 
 func go_invincible() -> void:
@@ -111,6 +117,15 @@ func go_invincible() -> void:
 	tween.tween_property(self, "_invincible", false, 0)
 
 
+func reduce_lives(reduction: int) -> bool:
+	lives -= reduction
+	SignalHub.emit_on_player_hit(lives, true)
+	if lives <= 0:
+		set_physics_process(false)
+		return false
+	return true
+
+
 func apply_hurt_jump() -> void:
 	_is_hurt = true
 	velocity = HURT_CONSTANT_VELOCITY
@@ -121,6 +136,10 @@ func apply_hurt_jump() -> void:
 func apply_hit() -> void:
 	if _invincible:
 		return
+	
+	if reduce_lives(1) == false:
+		return
+	
 	go_invincible()
 	apply_hurt_jump()
 
