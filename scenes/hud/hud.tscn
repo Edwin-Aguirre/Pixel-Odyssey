@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://ceoak2lcescaa"]
+[gd_scene load_steps=7 format=3 uid="uid://ceoak2lcescaa"]
 
 [ext_resource type="Script" uid="uid://cgtxcs22iy65c" path="res://scenes/hud/hud.gd" id="1_c45xl"]
 [ext_resource type="LabelSettings" uid="uid://csahvqsarb1fi" path="res://resources/hud_text.tres" id="1_cgeww"]
 [ext_resource type="Texture2D" uid="uid://dkt6d0jfwe1xa" path="res://assets/items/heart.png" id="2_cgeww"]
+[ext_resource type="LabelSettings" uid="uid://1ro83ihnq8b0" path="res://resources/game_over_text.tres" id="4_mgtrf"]
+[ext_resource type="FontFile" uid="uid://c6urmcbwtdh80" path="res://assets/fonts/Kenney Mini.ttf" id="5_v7mo4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n56i7"]
+font = ExtResource("5_v7mo4")
+font_size = 32
+outline_size = 4
+outline_color = Color(0.258824, 0.368627, 0.498039, 1)
+shadow_size = 4
+shadow_color = Color(0.258824, 0.368627, 0.498039, 1)
+shadow_offset = Vector2(2, 1)
 
 [node name="HUD" type="Control"]
 process_mode = 3
@@ -68,3 +79,82 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_cgeww")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.262745, 0.290196, 0.372549, 0.784314)
+
+[node name="VBGameOver" type="VBoxContainer" parent="ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -20.0
+offset_right = 43.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBGameOver"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Over"
+label_settings = ExtResource("4_mgtrf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/VBGameOver"]
+layout_mode = 2
+text = "Press Space"
+label_settings = SubResource("LabelSettings_n56i7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBComplete" type="VBoxContainer" parent="ColorRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -20.0
+offset_right = 43.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBComplete"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Level Complete"
+label_settings = ExtResource("4_mgtrf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/VBComplete"]
+layout_mode = 2
+text = "Press Space"
+label_settings = SubResource("LabelSettings_n56i7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompleteTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[connection signal="timeout" from="CompleteTimer" to="." method="_on_complete_timer_timeout"]
