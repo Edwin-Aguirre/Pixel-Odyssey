@@ -38,10 +38,10 @@ func _ready() -> void:
 
 
 func set_camera_limits() -> void:
-	player_cam.limit_bottom = camera_min.y
-	player_cam.limit_left = camera_min.x
-	player_cam.limit_top = camera_max.y
-	player_cam.limit_right = camera_max.x
+	player_cam.limit_bottom = int(camera_min.y)
+	player_cam.limit_left = int(camera_min.x)
+	player_cam.limit_top = int(camera_max.y)
+	player_cam.limit_right = int(camera_max.x)
 
 
 func late_init() -> void:

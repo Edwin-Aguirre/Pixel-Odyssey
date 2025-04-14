@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://5hoa42ba2vo4"]
+
+[ext_resource type="PackedScene" uid="uid://cj68xi80j884x" path="res://scenes/food_pickup/food_pickup.tscn" id="1_fl4gn"]
+
+[node name="FoodPickupItem" instance=ExtResource("1_fl4gn")]
+points = 5
+
+[node name="LifeTimer" parent="." index="2"]
+life_time = 50000.0
